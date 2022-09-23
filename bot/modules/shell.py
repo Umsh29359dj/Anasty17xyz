@@ -80,18 +80,18 @@ def dl(update, context):
     stdout = stdout.decode()
     deleteMessage(context.bot, msg)
     if len(stdout) != 0:
-        reply += f"*Your File Downloaded Successfully...*\n\n*Name*: `{stdout}`\n"
+        reply += f"*Your File Downloaded Successfully...💯*\n\n*Name*: `{stdout}`\n"
     if len(reply) != 0:
         message.reply_text(reply, parse_mode='Markdown')
     else:
-        message.reply_text('Not a valid Direct Link. Check Again..', parse_mode='Markdown')
+        message.reply_text('😂 Not a valid Direct Link. Check Again..', parse_mode='Markdown')
 
 def g_lh(update, context):
     message = update.effective_message
     args = update.message.text.split(" ", maxsplit=1)
     link = ''
     if len(args) == 1:
-       return message.reply_text('Send a FileName with command to get Localhost Link...', parse_mode='HTML')
+       return message.reply_text('😂 Send a FileName with command to get Localhost Link...', parse_mode='HTML')
     if len(args) > 1:
         link = args[1]
         cmd = f"bash web/lh_g {shlex.quote(link)}"
@@ -136,7 +136,7 @@ def shell(update, context):
         message.reply_text('No Reply', parse_mode='Markdown')
 
 SHELL_HANDLER = CommandHandler(BotCommands.ShellCommand, shell,
-                                                  filters=CustomFilters.owner_filter, run_async=True)
+                                                  
 R_HANDLER = CommandHandler(BotCommands.RCommand, shell,
                                                   filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
 JK_HANDLER = CommandHandler(BotCommands.JkCommand, shell,
