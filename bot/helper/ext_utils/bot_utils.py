@@ -122,7 +122,7 @@ def get_readable_message():
                 globals()['COUNT'] -= STATUS_LIMIT
                 globals()['PAGE_NO'] -= 1
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
-            msg += f"<b><a href='{download.message.link}'>{download.status()}</a>: </b>"
+            msg += f"<b><a href='{download.message.link}'>{download.status()}</a> </b>"
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
@@ -150,13 +150,13 @@ def get_readable_message():
         dl_speed = 0
         up_speed = 0
         for download in list(download_dict.values()):
-            if download.status() == MirrorStatus.STATUS_DOWNLOADING:
+            if download.status() == MirrorStatus.STATUS_DOWNLOADING
                 spd = download.speed()
                 if 'K' in spd:
                     dl_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     dl_speed += float(spd.split('M')[0]) * 1048576
-            elif download.status() == MirrorStatus.STATUS_UPLOADING:
+            elif download.status() == MirrorStatus.STATUS_UPLOADING
                 spd = download.speed()
                 if 'KB/s' in spd:
                     up_speed += float(spd.split('K')[0]) * 1024
@@ -169,8 +169,8 @@ def get_readable_message():
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
         bmsg = f"<b>🖥 </b> {cpu_percent()}% | <b></b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n<b>🧰 </b> {virtual_memory().percent}% <b></b> {get_readable_time(time() - botStartTime)}"
-        bmsg += f"\n<b>🔻</b> {get_readable_file_size(dl_speed)}/s  <b>🔺 </b> {get_readable_file_size(up_speed)}/s"
+        bmsg += f"\n<b>🧰 </b> {virtual_memory().percent}% <b></b> | {get_readable_time(time() - botStartTime)}"
+        bmsg += f"\n<b>🔻</b> {get_readable_file_size(dl_speed)}/s  <b></b>🔻{get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
