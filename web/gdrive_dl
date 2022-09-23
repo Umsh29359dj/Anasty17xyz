@@ -1,0 +1,1 @@
+gdown --fuzzy "$1" 2>&1 | sed 's+To: /usr/src/app/++g;1,2d;4,$d'

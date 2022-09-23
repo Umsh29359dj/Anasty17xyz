@@ -1,0 +1,1 @@
+chrome -x 16 "$1"|sed -n '/Download complete:/p'|sed 's+/usr/src/app/+\n+g'|sed -n '2p'
