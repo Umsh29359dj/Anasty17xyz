@@ -168,8 +168,8 @@ def get_readable_message():
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
-        bmsg = f"⚙️ {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n<b>🧭 {get_readable_time(time() - botStartTime)}"
+        bmsg = f"{get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
+        bmsg += f"\n<b>🧭{get_readable_time(time() - botStartTime)}"
         bmsg += f"\n<b>🔻</b> {get_readable_file_size(dl_speed)}/s  <b></b>🔻{get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b></b> {tasks}\n"
