@@ -26,7 +26,7 @@ class _BotCommands:
         self.QbZipLeechCommand = (f'qbzipleech{CMD_INDEX}', f'qzl{CMD_INDEX}')
         self.YtdlLeechCommand = (f'ytdlleech{CMD_INDEX}', f'yl{CMD_INDEX}')
         self.YtdlZipLeechCommand = (f'ytdlzipleech{CMD_INDEX}', f'yzl{CMD_INDEX}')
-        self.CloneCommand = f'clone{CMD_INDEX}'
+        self.CloneCommand = f'c{CMD_INDEX}'
         self.CountCommand = f'count{CMD_INDEX}'
         self.DeleteCommand = f'del{CMD_INDEX}'
         self.CancelMirror = f'cancel{CMD_INDEX}'
@@ -44,7 +44,7 @@ class _BotCommands:
         self.StatsCommand = f'stats{CMD_INDEX}'
         self.HelpCommand = f'help{CMD_INDEX}'
         self.LogCommand = f'log{CMD_INDEX}'
-        self.ShellCommand = f'shell{CMD_INDEX}'
+        self.ShellCommand = f's{CMD_INDEX}'
         self.EvalCommand = f'eval{CMD_INDEX}'
         self.ExecCommand = f'exec{CMD_INDEX}'
         self.ClearLocalsCommand = f'clearlocals{CMD_INDEX}'
