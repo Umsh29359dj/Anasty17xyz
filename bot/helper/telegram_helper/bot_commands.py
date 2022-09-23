@@ -29,7 +29,7 @@ class _BotCommands:
         self.CloneCommand = f'c{CMD_INDEX}'
         self.CountCommand = f'count{CMD_INDEX}'
         self.DeleteCommand = f'del{CMD_INDEX}'
-        self.CancelMirror = f'𝅶{CMD_INDEX}'
+        self.CancelMirror = f'destroy{CMD_INDEX}'
         self.CancelAllCommand = f'cancelall{CMD_INDEX}'
         self.ListCommand = f'list{CMD_INDEX}'
         self.SearchCommand = f'search{CMD_INDEX}'
