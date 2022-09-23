@@ -20,8 +20,8 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = " 📤"
-    STATUS_DOWNLOADING = " 📥"
+    STATUS_UPLOADING = "DL => "
+    STATUS_DOWNLOADING = "UL => "
     STATUS_CLONING = "♻️"
     STATUS_WAITING = "Queue"
     STATUS_PAUSED = "⏸️"
@@ -127,7 +127,7 @@ def get_readable_message():
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n<b>⇋ </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>⚡ </b> {download.speed()} <b>⏳</b> {download.eta()}"
+                msg += f"\n<b>⚡</b> {download.speed()} <b>⏳</b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
@@ -141,7 +141,7 @@ def get_readable_message():
                 msg += f" | <b>Time: </b>{download.seeding_time()}"
             else:
                 msg += f"\n<b>Size: </b>{download.size()}"
-            msg += f"\n👉 <code>/{BotCommands.CancelMirror} {download.gid()}</code>"
+            msg += f"\n<code>/{BotCommands.CancelMirror} {download.gid()}</code>"
             msg += "\n\n"
             if STATUS_LIMIT is not None and index == STATUS_LIMIT:
                 break
@@ -158,9 +158,9 @@ def get_readable_message():
                     dl_speed += float(spd.split('M')[0]) * 1048576
             elif download.status() == MirrorStatus.STATUS_UPLOADING:
                 spd = download.speed()
-                if 'KB/s' in spd:
+                if ' KB/s' in spd:
                     up_speed += float(spd.split('K')[0]) * 1024
-                elif 'MB/s' in spd:
+                elif ' MB/s' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
             elif download.status() == MirrorStatus.STATUS_SEEDING:
                 spd = download.upload_speed()
