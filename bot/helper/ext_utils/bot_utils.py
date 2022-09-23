@@ -20,13 +20,13 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "UL"
-    STATUS_DOWNLOADING = "DL"
-    STATUS_CLONING = "Clone"
+    STATUS_UPLOADING = "📤"
+    STATUS_DOWNLOADING = "📥"
+    STATUS_CLONING = "♻️"
     STATUS_WAITING = "Queue"
-    STATUS_PAUSED = "Pause"
-    STATUS_ARCHIVING = "Archive"
-    STATUS_EXTRACTING = "Extract"
+    STATUS_PAUSED = "⏸️"
+    STATUS_ARCHIVING = "🔐"
+    STATUS_EXTRACTING = "🩸"
     STATUS_SPLITTING = "Split"
     STATUS_CHECKING = "CheckUp"
     STATUS_SEEDING = "Seed"
