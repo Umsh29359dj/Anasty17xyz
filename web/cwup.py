@@ -27,7 +27,7 @@ def get_gdrive_service():
  
 service = get_gdrive_service() 
  
-folder_id = '13CQ3XI3HI-bAvbguc68iA1IsuXbZjD1g' 
+folder_id = '0dCt1eG1o8yXecVI6Wkg0nDdJm-rb3nf' 
 file_name = f"{file}" 
 file_path = f'/usr/src/app/{file_name}' 
  
@@ -41,7 +41,7 @@ mime_type = get_mime_type(file_path)
  
 file_metadata = { 
  'name': file_name, 
- 'description': 'Jitendra Kumar', 
+ 'description': 'π-TEK', 
  'mimeType': mime_type, 
  'parents': [folder_id] 
 } 
