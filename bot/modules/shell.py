@@ -136,6 +136,8 @@ def shell(update, context):
         message.reply_text('No Reply', parse_mode='Markdown')
 
 SHELL_HANDLER = CommandHandler(BotCommands.ShellCommand, shell,
+
+                                                  filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)    
                                                   
 R_HANDLER = CommandHandler(BotCommands.RCommand, shell,
                                                   filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
