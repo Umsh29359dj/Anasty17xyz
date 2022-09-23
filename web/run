@@ -1,0 +1,3 @@
+chmod +x /usr/local/bin/aria2c
+rm -rf "ffmpeg-git-20220722-amd64-static"
+rm app.json
