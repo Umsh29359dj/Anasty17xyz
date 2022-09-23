@@ -150,13 +150,13 @@ def get_readable_message():
         dl_speed = 0
         up_speed = 0
         for download in list(download_dict.values()):
-            if download.status() == MirrorStatus.STATUS_DOWNLOADING
+            if download.status() == MirrorStatus.STATUS_DOWNLOADING:
                 spd = download.speed()
                 if 'K' in spd:
                     dl_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     dl_speed += float(spd.split('M')[0]) * 1048576
-            elif download.status() == MirrorStatus.STATUS_UPLOADING
+            elif download.status() == MirrorStatus.STATUS_UPLOADING:
                 spd = download.speed()
                 if 'KB/s' in spd:
                     up_speed += float(spd.split('K')[0]) * 1024
