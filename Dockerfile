@@ -1,4 +1,4 @@
-FROM anasty17/mltb:heroku
+FROM anasty17/mltb:latest
 
 
 # Install all the required packages
