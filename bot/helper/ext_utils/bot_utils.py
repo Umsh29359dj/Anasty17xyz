@@ -176,7 +176,7 @@ def get_readable_message():
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
             buttons.sbutton("➡️", "status pre")
-            buttons.sbutton("⬅️", "status nex")
+            buttons.sbutton("➡️", "status nex")
             button = buttons.build_menu(2)
             return msg + bmsg, button
         return msg + bmsg, ""
