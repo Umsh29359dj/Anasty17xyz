@@ -122,9 +122,9 @@ def shell(update, context):
         reply += f"*Stderr*\n`{stderr}`\n"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
     if len(reply) > 3000:
-        with open('shell_output.txt', 'w') as file:
+        with open('Terminal_output.txt', 'w') as file:
             file.write(reply)
-        with open('shell_output.txt', 'rb') as doc:
+        with open('Terminal_output.txt', 'rb') as doc:
             context.bot.send_document(
                 document=doc,
                 filename=doc.name,
@@ -133,7 +133,7 @@ def shell(update, context):
     elif len(reply) != 0:
         message.reply_text(reply, parse_mode='Markdown')
     else:
-        message.reply_text('No Reply', parse_mode='Markdown')
+        message.reply_text('No Reply 😎', parse_mode='Markdown')
 
 SHELL_HANDLER = CommandHandler(BotCommands.ShellCommand, shell,
 
