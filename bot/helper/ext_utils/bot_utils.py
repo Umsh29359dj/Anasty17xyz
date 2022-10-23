@@ -20,8 +20,8 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Upload"
-    STATUS_DOWNLOADING = "Download"
+    STATUS_UPLOADING = "UL"
+    STATUS_DOWNLOADING = "DL"
     STATUS_CLONING = "Clone"
     STATUS_WAITING = "Queue"
     STATUS_PAUSED = "Pause"
@@ -126,8 +126,9 @@ def get_readable_message():
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
-                msg += f"\n<b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>⚡:</b> {download.speed()} | <b>⏳:</b> {download.eta()}"
+                msg += f"\n<b>⚙️ </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                msg += f"\n<b>😎 => </b> <b>{download.message.from_user.first_name}</b>\n<b>⚠️ => </b><code>/warn {download.message.from_user.id}</code>"
+                msg += f"\n<b>⚡ </b> {download.speed()} | <b>⏳ </b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
@@ -168,14 +169,14 @@ def get_readable_message():
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
-        bmsg = f"<b>CPU:</b> {cpu_percent()}% | <b>FREE:</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n<b>RAM:</b> {virtual_memory().percent}% | <b>UPTIME:</b> {get_readable_time(time() - botStartTime)}"
-        bmsg += f"\n<b>DL:</b> {get_readable_file_size(dl_speed)}/s | <b>UL:</b> {get_readable_file_size(up_speed)}/s"
+        bmsg = f"<b>🖥 </b> {cpu_percent()}% <b>FRE</b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
+        bmsg += f"\n<b>📇 </b> {virtual_memory().percent}% | <b>♻️ </b> {get_readable_time(time() - botStartTime)}"
+        bmsg += f"\n<b>🔻 </b> {get_readable_file_size(dl_speed)}/s | <b>🔺 </b> {get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("Previous", "status pre")
-            buttons.sbutton("Next", "status nex")
+            buttons.sbutton("➡️", "status pre")
+            buttons.sbutton("⬅️", "status nex")
             button = buttons.build_menu(2)
             return msg + bmsg, button
         return msg + bmsg, ""
