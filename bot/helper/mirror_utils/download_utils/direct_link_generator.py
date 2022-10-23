@@ -21,7 +21,7 @@ from time import sleep
 from bot import LOGGER, UPTOBOX_TOKEN
 from bot.helper.ext_utils.exceptions import DirectDownloadLinkException
 
-fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
+fmed_list = ['fembed-hd.com', 'diasfem.com', 'playerjavseen.com', 'cloudrls.com', 'watch-jav-english.live', 'watchjavnow.xyz', 'embedsito.com', 'asianclub.tv', 'mycloudzz.com', 'gaobook.review', 'pornhole.club', 'javpoll.com', 'ujav.me', 'embed-media.com', 'avple.video', 'ww9874.com', 'smartshare.tv', 'fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
              'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'mm9842.com']
 
 
