@@ -127,7 +127,7 @@ def get_readable_message():
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n<b>⚙️ </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>😎 </b><code>{download.message.from_user.first_name}</code> <b>🔨 </b><code>/warn {download.message.from_user.id}</code>"
+                msg += f"\n<b>😎 </b><code>{download.message.from_user.first_name}</code> <code>/warn {download.message.from_user.id}</code>"
                 msg += f"\n<b>⚡ </b> {download.speed()} | <b>⏳ </b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
@@ -170,7 +170,7 @@ def get_readable_message():
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
         bmsg = f"<b>🖥 </b> {cpu_percent()}% <b>& </b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
-        bmsg += f"\n<b>📇 </b> {virtual_memory().percent}% | <b>♻️ </b> {get_readable_time(time() - botStartTime)}"
+        bmsg += f"\n<b>📇 </b> {virtual_memory().percent}% <b>♻️ </b> {get_readable_time(time() - botStartTime)}"
         bmsg += f"\n<b>🔻 </b> {get_readable_file_size(dl_speed)}/s | <b>🔺 </b> {get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
