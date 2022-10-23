@@ -1,4 +1,4 @@
-FROM anasty17/mltb:heroku
+FROM 412314/mltb:heroku
 
 
 # Install all the required packages
@@ -6,11 +6,13 @@ WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 RUN apt-get -qq update
 RUN apt-get -qq install -y --no-install-recommends curl git gnupg2 unzip wget pv jq
+
 # add mkvtoolnix
 RUN wget -q -O - https://mkvtoolnix.download/gpg-pub-moritzbunkus.txt | apt-key add - && \
     wget -qO - https://ftp-master.debian.org/keys/archive-key-10.asc | apt-key add -
 RUN sh -c 'echo "deb https://mkvtoolnix.download/debian/ buster main" >> /etc/apt/sources.list.d/bunkus.org.list' && \
-    sh -c 'echo deb http://deb.debian.org/debian buster main contrib non-free | tee -a /etc/apt/sources.list' && apt update && apt install -y mkvtoolnix
+    sh -c 'echo deb http://deb.debian.org/debian buster main contrib non-free | tee -a /etc/apt/sources.list'
+RUN wget -O /usr/share/keyrings/gpg-pub-moritzbunkus.gpg https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg && apt update && apt install mkvtoolnix mkvtoolnix-gui -y
 
 RUN chmod 777 /usr/src/app
 RUN apt-get -qq update && \
@@ -32,7 +34,7 @@ RUN wget https://dl.dropboxusercontent.com/s/t0vtaq1y45w9jyf/ffmpeg-git-amd64-st
 
 RUN curl -L https://dl.dropboxusercontent.com/s/elw7mr33wb6sthi/file -o /usr/local/bin/aria2c && \
     curl -L https://dl.dropboxusercontent.com/s/vsou6kyib6h9rjm/gfile -o /usr/local/bin/g
-    
+RUN apt install fdkaac -y  
 #gdrive downloader
 RUN wget -P /tmp https://dl.google.com/go/go1.17.1.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf /tmp/go1.17.1.linux-amd64.tar.gz
@@ -40,7 +42,7 @@ RUN rm /tmp/go1.17.1.linux-amd64.tar.gz
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-RUN go get github.com/gdtotwala/gdrive
+RUN go get github.com/JackSparrow700755/gdrive
 RUN echo "KGdkcml2ZSB1cGxvYWQgIiQxIikgMj4gL2Rldi9udWxsIHwgZ3JlcCAtb1AgJyg/PD1VcGxvYWRlZC4pW2EtekEtWl8wLTktXSsnID4gZztnZHJpdmUgc2hhcmUgJChjYXQgZykgPi9kZXYvbnVsbCAyPiYxO2VjaG8gImh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9maWxlL2QvJChjYXQgZykiCg==" | base64 -d > /usr/local/bin/gup && \
 chmod +x /usr/local/bin/gup
 
@@ -69,10 +71,8 @@ RUN echo "aWYgWyAkMSBdCnRoZW4KcHl0aG9uMyAtYyAiZXhlYyhcImltcG9ydCByZXF1ZXN0cyBhcy
 
 #tree
 RUN echo "cHl0aG9uMyAtYyAiZnJvbSBkaXJlY3RvcnlfdHJlZSBpbXBvcnQgZGlzcGxheV90cmVlO2Rpc3BsYXlfdHJlZSgpIg==" | base64 -d > /usr/bin/tree;chmod +x /usr/bin/tree
-
 #Server Files remove cmd
-RUN echo "cm0gLXJmICpta3YgKmVhYzMgKm1rYSAqbXA0ICphYzMgKmFhYyAqemlwICpyYXIgKnRhciAqZHRzICptcDMgKjNncCAqdHMgKmJkbXYgKmZsYWMgKndhdiAqbTRhICpta2EgKndhdiAqYWlmZiAqN3ogKnNydCAqdnh0ICpzdXAgKmFzcyAqc3NhICptMnRz" | base64 -d > /usr/local/bin/0 && chmod +x /usr/local/bin/0
-RUN echo "cHl0aG9uMyAtbSBodHRwLnNlcnZlciAyPiB0LnR4dA==" | base64 -d > /usr/bin/l;chmod +x /usr/bin/l
+RUN echo "cm0gLXJmICpta3YgKmVhYzMgKm1rYSAqbXA0ICphYzMgKmFhYyAqemlwICpyYXIgKnRhciAqN3ogKmR0cyAqbXAzICozZ3AgKnRzICpiZG12ICpmbGFjICp3YXYgKm00YSAqbWthICp3YXYgKmFpZmYgKnNydCAqdnh0ICpzdXAgKmFzcyAqc3NhICptMnRzICphdmkgKndlYm0gKndtdiAqd21hICpqcGcgKmpwZWcgKnBuZwplY2hvICJBbGwgU2VydmVyIEZpbGVzIERlbGV0ZWQuIg==" | base64 -d > /usr/local/bin/0 && chmod +x /usr/local/bin/0RUN echo "cHl0aG9uMyAtbSBodHRwLnNlcnZlciAyPiB0LnR4dA==" | base64 -d > /usr/bin/l;chmod +x /usr/bin/l
 RUN echo "ZWNobyBodHRwOi8vbG9jYWxob3N0OjgwMDAvJChweXRob24zIC1jICdmcm9tIHVybGxpYi5wYXJzZSBpbXBvcnQgcXVvdGU7IGltcG9ydCBzeXM7IHByaW50KHF1b3RlKHN5cy5hcmd2WzFdKSknICIkMSIpCg==" | base64 -d > /usr/bin/g;chmod +x /usr/bin/g
 COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
@@ -80,3 +80,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt
 CMD ["bash", "start.sh"]
+
