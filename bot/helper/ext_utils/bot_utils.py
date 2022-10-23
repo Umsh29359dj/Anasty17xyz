@@ -127,7 +127,7 @@ def get_readable_message():
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
                 msg += f"\n<b>⚙️ </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>USR 😎 </b> <code>{download.message.from_user.first_name}</code>\n<b>ID ⚠️ </b><code>/warn {download.message.from_user.id}</code>"
+                msg += f"\n<b>😎</b><code>{download.message.from_user.first_name}</code> <b>⚠️</b><code>/warn {download.message.from_user.id}</code>"
                 msg += f"\n<b>⚡ </b> {download.speed()} | <b>⏳ </b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
