@@ -31,9 +31,9 @@ def stats(update, context):
             f'<b>OS Uptime:</b> {get_readable_time(time() - boot_time())}\n\n'\
             f'<b>Total Disk Space:</b> {get_readable_file_size(total)}\n'\
             f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
-            f'<b>Upload:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
-            f'<b>Download:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>CPU:</b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>UL :</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
+            f'<b>DL :</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
+            f'<b>🖥 </b> {cpu_percent(interval=0.5)}%\n'\
             f'<b>RAM:</b> {memory.percent}%\n'\
             f'<b>DISK:</b> {disk}%\n\n'\
             f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
