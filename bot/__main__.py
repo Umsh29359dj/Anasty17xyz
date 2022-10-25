@@ -22,26 +22,26 @@ def stats(update, context):
     if ospath.exists('.git'):
         last_commit = check_output(["git log -1 --date=short --pretty=format:'%cd <b>From</b> %cr'"], shell=True).decode()
     else:
-        last_commit = 'No UPSTREAM_REPO'
+        last_commit = '@at_Rai'
     total, used, free, disk = disk_usage('/')
     swap = swap_memory()
     memory = virtual_memory()
-    stats = f'<b>🔰 </b> {last_commit}\n\n'\
+    stats = f'<b>⌈➳ 🔰</b> {last_commit}\n\n'\
             f'<b>Uptime:</b> {get_readable_time(time() - botStartTime)}\n'\
-            f'<b>🧭 </b> {get_readable_time(time() - boot_time())}\n\n'\
-            f'<b>🛅 </b> {get_readable_file_size(total)}\n'\
+            f'<b>⌈➳ 🧭 </b> {get_readable_time(time() - boot_time())}\n\n'\
+            f'<b>⌈➳ 🛅 </b> {get_readable_file_size(total)}\n'\
             f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
             f'<b>🔺 </b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
             f'<b>🔻 </b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>🖥 </b> {cpu_percent(interval=0.5)}%\n'\
-            f'<b>🛄 </b> {memory.percent}%\n'\
-            f'<b>📇 </b> {disk}%\n\n'\
+            f'<b>⌈➳ 🖥 </b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>⌈➳ 🛄 </b> {memory.percent}%\n'\
+            f'<b>⌈➳ 📇 </b> {disk}%\n\n'\
             f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
             f'<b>Total Cores:</b> {cpu_count(logical=True)}\n\n'\
-            f'<b>💌 </b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
+            f'<b>⌈➳ 💌 </b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
             f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
             f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"
+            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"
     sendMessage(stats, context.bot, update.message)
 
 
