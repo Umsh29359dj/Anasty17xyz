@@ -41,7 +41,7 @@ def stats(update, context):
             f'<b>🛄 </b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
             f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
             f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>b>⌈➳ 👸 𝙳𝙸𝚂𝙺 𝚄𝚂𝙴𝙳 :</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ 💎 Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"'
+            f'<b>⌈➳ 👸 𝙳𝙸𝚂𝙺 𝚄𝚂𝙴𝙳 :</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ 💎 Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"'
     sendMessage(stats, context.bot, update.message)
 
 
