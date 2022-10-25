@@ -26,29 +26,29 @@ def stats(update, context):
     total, used, free, disk = disk_usage('/')
     swap = swap_memory()
     memory = virtual_memory()
-    stats = f'<b>🔬 </b> {last_commit}\n\n'\
-            f'<b>🧭 </b> {get_readable_time(time() - botStartTime)}\n'\
+    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
+            f'<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n'\
             f'<b>OS Uptime:</b> {get_readable_time(time() - boot_time())}\n\n'\
             f'<b>Total Disk Space:</b> {get_readable_file_size(total)}\n'\
             f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
-            f'<b>🔺 </b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
-            f'<b>🔻 </b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>🖥 </b> {cpu_percent(interval=0.5)}%\n'\
-            f'<b>🧰 </b> {memory.percent}%\n'\
-            f'<b>💌 </b> {disk}%\n\n'\
+            f'<b>Upload:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
+            f'<b>Download:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
+            f'<b>CPU:</b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>RAM:</b> {memory.percent}%\n'\
+            f'<b>DISK:</b> {disk}%\n\n'\
             f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
             f'<b>Total Cores:</b> {cpu_count(logical=True)}\n\n'\
-            f'<b>🛄 </b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
+            f'<b>SWAP:</b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
             f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
             f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>👸 </b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ 💎 Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"'
+            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n'
     sendMessage(stats, context.bot, update.message)
 
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("😎", "https://t.me/at_rai")
-    buttons.buildbutton("💝", "https://t.me/at_rai")
+    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
+    buttons.buildbutton("Owner", "https://www.github.com/anasty17")
     reply_markup = buttons.build_menu(2)
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
@@ -148,7 +148,7 @@ def main():
                         chat_id, msg_id = map(int, f)
                     msg = 'Restarted Successfully!'
                 else:
-                    msg = 'online...! 😎'
+                    msg = 'Bot Restarted!'
                 for tag, links in data.items():
                      msg += f"\n\n{tag}: "
                      for index, link in enumerate(links, start=1):
@@ -180,7 +180,7 @@ def main():
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
             try:
-                bot.sendMessage(id_, "online...! 😎 ", 'HTML')
+                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
             except Exception as e:
                 LOGGER.error(e)
 
@@ -201,7 +201,7 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("Bot Started 💝 !")
+    LOGGER.info("Bot Started!")
     signal(SIGINT, exit_clean_up)
 
 app.start()
