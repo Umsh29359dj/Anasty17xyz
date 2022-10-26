@@ -30,7 +30,7 @@ def stats(update, context):
             f'<b>⌈➳ ❤ Online </b> {get_readable_time(time() - botStartTime)}\n'\
             f'<b>⌈➳ 🧭 </b> {get_readable_time(time() - boot_time())}\n\n'\
             f'<b>⌈➳ 🛅 </b> {get_readable_file_size(total)}\n'\
-            f'<b>⌈➳ 🌐 Used </b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
+            f'<b>⌈➳ 🌐 Used </b> {get_readable_file_size(used)} & <b>Free:</b> {get_readable_file_size(free)}\n\n'\
             f'<b>⌈➳ 🔺 </b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
             f'<b>⌈➳ 🔻 </b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
             f'<b>⌈➳ 🖥 </b> {cpu_percent(interval=0.5)}%\n'\
@@ -38,7 +38,7 @@ def stats(update, context):
             f'<b>⌈➳ 📇 </b> {disk}%\n\n'\
             f'<b>⌈➳ 🌩 </b> {cpu_count(logical=False)}\n'\
             f'<b>⌈➳ 📶 </b> {cpu_count(logical=True)}\n\n'\
-            f'<b>⌈➳ 💌 </b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
+            f'<b>⌈➳ 💌 </b> {get_readable_file_size(swap.total)} | <b>💞 </b> {swap.percent}%\n'\
             f'<b>⌈➳ Total Drive :</b> {get_readable_file_size(memory.total)}\n'\
             f'<b>⌈➳ Free :</b> {get_readable_file_size(memory.available)}\n'\
             f'<b>⌈➳ Used :</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"
