@@ -1,7 +1,6 @@
 from re import findall as re_findall
 from threading import Thread, Event
 from time import time
-import psutil, shutil
 from math import ceil
 from html import escape
 from psutil import virtual_memory, cpu_percent, disk_usage
@@ -127,9 +126,9 @@ def get_readable_message():
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
-                msg += f"\n<b>⌈➳ 🧭 </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<code>{download.message.from_user.first_name}</code> <code>/warn {download.message.from_user.id}</code>"
-                msg += f"\n<b>⌈➳ ⚡ </b> {download.speed()}\n<b>⌈➳ ⏳ </b> {download.eta()}"
+                msg += f"\n<b>⚙️ </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                msg += f"\n<b>😎 </b><code>{download.message.from_user.first_name}</code> <code>/warn {download.message.from_user.id}</code>"
+                msg += f"\n<b>⚡ </b> {download.speed()} | <b>⏳ </b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
@@ -172,12 +171,12 @@ def get_readable_message():
                     up_speed += float(spd.split('M')[0]) * 1048576
         bmsg = f"<b>🖥 </b> {cpu_percent()}% <b>& </b> {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"
         bmsg += f"\n<b>📇 </b> {virtual_memory().percent}% <b>♻️ </b> {get_readable_time(time() - botStartTime)}"
-        bmsg += f"\n<b>🔻 </b> {get_readable_file_size(dl_speed)}/s | <b>🔺 </b> {get_readable_file_size(up_speed)}/s\n<b>⌈➳ 🛅 𝙰𝙱𝙾𝚄𝚃  𝙳𝙰𝚃𝙰 𝚄𝚂𝙰𝙶𝙴 : ↬↧</b>\n<b>⌈➳ 💐 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝙳𝙰𝚃𝙰 : </b> <code>{get_readable_file_size(psutil.net_io_counters().bytes_recv)} ꕳ 🔻</code>\n<b>⌈➳ ☸ 𝚄𝙿𝙻𝙾𝙰𝙳𝙴𝙳 𝙳𝙰𝚃𝙰 : </b> <code>{get_readable_file_size(psutil.net_io_counters().bytes_sent)} ཬ 🔺</code>"
+        bmsg += f"\n<b>🔻 </b> {get_readable_file_size(dl_speed)}/s | <b>🔺 </b> {get_readable_file_size(up_speed)}/s"
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
             buttons.sbutton("➡️", "status pre")
-            buttons.sbutton("⬅️", "status nex")
+            buttons.sbutton("➡️", "status nex")
             button = buttons.build_menu(2)
             return msg + bmsg, button
         return msg + bmsg, ""
