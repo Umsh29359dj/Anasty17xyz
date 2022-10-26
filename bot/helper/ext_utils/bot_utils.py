@@ -127,9 +127,9 @@ def get_readable_message():
             msg += f"<code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
-                msg += f"\n<b>🧭 </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
+                msg += f"\n<b>⌈➳ 🧭 </b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
                 msg += f"\n<code>{download.message.from_user.first_name}</code> <code>/warn {download.message.from_user.id}</code>"
-                msg += f"\n<b>⚡ </b> {download.speed()} | <b>⏳ </b> {download.eta()}"
+                msg += f"\n<b>⌈➳ ⚡ </b> {download.speed()}\n <b>⌈➳ ⏳ </b> {download.eta()}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
@@ -176,8 +176,8 @@ def get_readable_message():
         if STATUS_LIMIT is not None and tasks > STATUS_LIMIT:
             msg += f"<b>Page:</b> {PAGE_NO}/{pages} | <b>Tasks:</b> {tasks}\n"
             buttons = ButtonMaker()
-            buttons.sbutton("⬅️", "status pre")
-            buttons.sbutton("➡️", "status nex")
+            buttons.sbutton("➡️", "status pre")
+            buttons.sbutton("⬅️", "status nex")
             button = buttons.build_menu(2)
             return msg + bmsg, button
         return msg + bmsg, ""
