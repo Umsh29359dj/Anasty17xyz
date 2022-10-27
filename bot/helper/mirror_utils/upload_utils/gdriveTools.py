@@ -610,7 +610,7 @@ class GoogleDriveHelper:
                           f'<span> <a class="forhover" href="{furl}">Drive Link</a></span>'\
                            '</div></span>'
                 else:
-                    furl = f"https://drive.google.com/uc?id={file.get('id')}&export=download"
+                    furl = f"https://drive.google.com/file/d/{file.get('id')}/view"
                     msg += '<span class="container start rfontsize">' \
                           f"<div>📄 {file.get('name')} ({get_readable_file_size(int(file.get('size', 0)))})</div>" \
                            '<div class="dlinks">' \
