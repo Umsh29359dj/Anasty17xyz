@@ -22,33 +22,33 @@ def stats(update, context):
     if ospath.exists('.git'):
         last_commit = check_output(["git log -1 --date=short --pretty=format:'%cd <b>From</b> %cr'"], shell=True).decode()
     else:
-        last_commit = '@at_Rai'
+        last_commit = 'No UPSTREAM_REPO'
     total, used, free, disk = disk_usage('/')
     swap = swap_memory()
     memory = virtual_memory()
-    stats = f'<b>⌈➳ 🔰</b> {last_commit}\n\n'\
-            f'<b>⌈➳ ❤ Online </b> {get_readable_time(time() - botStartTime)}\n'\
-            f'<b>⌈➳ 🧭 </b> {get_readable_time(time() - boot_time())}\n\n'\
-            f'<b>⌈➳ 🛅 </b> {get_readable_file_size(total)}\n'\
-            f'<b>⌈➳ 🌐 Used </b> {get_readable_file_size(used)} & <b>Free:</b> {get_readable_file_size(free)}\n\n'\
-            f'<b>⌈➳ 🔺 </b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
-            f'<b>⌈➳ 🔻 </b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
-            f'<b>⌈➳ 🖥 </b> {cpu_percent(interval=0.5)}%\n'\
-            f'<b>⌈➳ 🛄 </b> {memory.percent}%\n'\
-            f'<b>⌈➳ 📇 </b> {disk}%\n\n'\
-            f'<b>⌈➳ 🌩 </b> {cpu_count(logical=False)}\n'\
-            f'<b>⌈➳ 📶 </b> {cpu_count(logical=True)}\n\n'\
-            f'<b>⌈➳ 💌 </b> {get_readable_file_size(swap.total)} | <b>💞 </b> {swap.percent}%\n'\
-            f'<b>⌈➳ Total Drive :</b> {get_readable_file_size(memory.total)}\n'\
-            f'<b>⌈➳ Free :</b> {get_readable_file_size(memory.available)}\n'\
-            f'<b>⌈➳ Used :</b> {get_readable_file_size(memory.used)}\n\n<b>⌈➳ Bot Update Info..! </b>'"<a href='https://telegra.ph/file/b02788a8c2c7ca546d369.jpg'>😎</a>"
+    stats = f'<b>Commit Date:</b> {last_commit}\n\n'\
+            f'<b>Bot Uptime:</b> {get_readable_time(time() - botStartTime)}\n'\
+            f'<b>OS Uptime:</b> {get_readable_time(time() - boot_time())}\n\n'\
+            f'<b>Total Disk Space:</b> {get_readable_file_size(total)}\n'\
+            f'<b>Used:</b> {get_readable_file_size(used)} | <b>Free:</b> {get_readable_file_size(free)}\n\n'\
+            f'<b>Upload:</b> {get_readable_file_size(net_io_counters().bytes_sent)}\n'\
+            f'<b>Download:</b> {get_readable_file_size(net_io_counters().bytes_recv)}\n\n'\
+            f'<b>CPU:</b> {cpu_percent(interval=0.5)}%\n'\
+            f'<b>RAM:</b> {memory.percent}%\n'\
+            f'<b>DISK:</b> {disk}%\n\n'\
+            f'<b>Physical Cores:</b> {cpu_count(logical=False)}\n'\
+            f'<b>Total Cores:</b> {cpu_count(logical=True)}\n\n'\
+            f'<b>SWAP:</b> {get_readable_file_size(swap.total)} | <b>Used:</b> {swap.percent}%\n'\
+            f'<b>Memory Total:</b> {get_readable_file_size(memory.total)}\n'\
+            f'<b>Memory Free:</b> {get_readable_file_size(memory.available)}\n'\
+            f'<b>Memory Used:</b> {get_readable_file_size(memory.used)}\n'
     sendMessage(stats, context.bot, update.message)
 
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("❤", "https://t.me/at_rai")
-    buttons.buildbutton("🌩", "https://t.me/at_rai")
+    buttons.buildbutton("Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot")
+    buttons.buildbutton("Owner", "https://www.github.com/anasty17")
     reply_markup = buttons.build_menu(2)
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
         start_string = f'''
@@ -180,7 +180,7 @@ def main():
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
             try:
-                bot.sendMessage(id_, "online..! ❤", 'HTML')
+                bot.sendMessage(id_, "Bot Restarted!", 'HTML')
             except Exception as e:
                 LOGGER.error(e)
 
