@@ -26,7 +26,7 @@ class _BotCommands:
         self.QbZipLeechCommand = (f'qbzipleech{CMD_INDEX}', f'qzl{CMD_INDEX}')
         self.YtdlLeechCommand = (f'ytdlleech{CMD_INDEX}', f'yl{CMD_INDEX}')
         self.YtdlZipLeechCommand = (f'ytdlzipleech{CMD_INDEX}', f'yzl{CMD_INDEX}')
-        self.CloneCommand = f'c{CMD_INDEX}'
+        self.CloneCommand = f'clone{CMD_INDEX}'
         self.CountCommand = f'count{CMD_INDEX}'
         self.DeleteCommand = f'del{CMD_INDEX}'
         self.CancelMirror = f'destroy{CMD_INDEX}'
