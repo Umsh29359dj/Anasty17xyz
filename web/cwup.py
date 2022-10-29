@@ -41,7 +41,7 @@ mime_type = get_mime_type(file_path)
  
 file_metadata = { 
  'name': file_name, 
- 'description': 'π-TEK', 
+ 'description': '💞', 
  'mimeType': mime_type, 
  'parents': [folder_id] 
 } 
